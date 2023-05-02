@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
-   
+    // http://127.0.0.1:8000/api/books/
     public function index()
     {
         return Book::all();
@@ -19,10 +19,10 @@ class BookController extends Controller
         //
     }
 
-    
+    // http://127.0.0.1:8000/api/books/{id}
     public function show(Book $book)
     {
-        //
+        return $book;
     }
 
    
