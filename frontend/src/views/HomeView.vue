@@ -11,7 +11,7 @@
                         <td>{{ (book.created_at) }}</td>
                         <td>{{ (book.updated_at) }}</td>
                             <td>
-                                <RouterLink to="{path:'edit/'+book.id}" class="btn btn-warning">
+                                <RouterLink :to="{path:'edit/'+book.id}" class="btn btn-warning">
                                     <i class="fa-solid fa-edit"></i>
                                 </RouterLink>
                                 <button class="btn btn-danger" v-on:click="eliminar(book.id,book.title)">
@@ -27,7 +27,7 @@
 </template>
 <script>
     import axios from "axios";
-    import {confirmar, show_alerta} from '../funciones';
+    import {show_alerta} from '../funciones';
     import Swal from "sweetalert2";
     
     export default{
@@ -37,10 +37,10 @@
             }
         }, 
         mounted(){
-            this.getbooks();
+            this.getBooks();
         },
         methods:{
-            getbooks(){
+            getBooks(){
                 axios.get('http://127.0.0.1:8000/api/books/').then(
                     response =>(
                         this.books = response.data
@@ -74,7 +74,7 @@
                             
                             if([200, 201, 204].includes(status)){
                                 show_alerta('Se elimino correctamente', 'success');
-                                this.getbooks()
+                                this.getBooks()
 
                             }else{
                                 var listado='';
@@ -85,7 +85,7 @@
                             }
                         })
                     }else{
-                        show_alerta('Operacion cancelada','info');
+                       show_alerta('Operacion cancelada','info');
                     }
                 })
                 
